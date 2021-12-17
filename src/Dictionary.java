@@ -82,8 +82,11 @@ public class Dictionary {
 
     public static void logs(String searchStr, String type){
         String saveStr = type+": "+searchStr+"\n";
-        logsList.add(saveStr);
-
+        try {
+            MyWriter.appendLogs(LOGS,saveStr);
+        } catch (IOException e) {
+            e.getMessage();
+        }
     }
 
     public static void printLogs(String historyFile){

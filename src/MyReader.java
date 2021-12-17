@@ -39,4 +39,14 @@ public class MyReader {
         }
         return dict;
     }
+
+    public static ArrayList<String> readLogs(String fname) throws IOException {
+        ArrayList<String> logs = new ArrayList<>();
+        String line;
+        BufferedReader reader = new BufferedReader(new FileReader(fname));
+        while ((line = reader.readLine()) != null) {
+            logs.add(line);
+        }
+        return logs;
+    }
 }
