@@ -8,7 +8,9 @@ import java.util.concurrent.TimeUnit;
 public class Dictionary {
     private static HashMap<String, ArrayList<String>> dict = new HashMap<>();
     private static final String FILENAME = "slang.txt";
+    private static final String LOGS = "history.txt";
     static boolean working = false;
+    private static ArrayList<String> logsList = new ArrayList<>();
 
     public static void print(String s) {
         System.out.print(s);
@@ -32,6 +34,17 @@ public class Dictionary {
         }
     }
 
+    public static void printSlangWithDef(ArrayList<String> list,String def,String key){
+        for(String i: list){
+            if(i.toLowerCase().contains(def.toLowerCase())){
+                println(key);
+                printDef(dict.get(key));
+                println("===============");
+                break;
+            }
+        }
+    }
+
     public static void prompt(){
         print("Press ENTER to continue");
         Scanner keyIn = new Scanner(System.in);
@@ -42,6 +55,9 @@ public class Dictionary {
         print("Enter slang: ");
         Scanner scanner = new Scanner(System.in);
         String slang = scanner.nextLine();
+
+        logs(slang,"Slang");
+
         ArrayList<String> value = dict.get(slang);
 
         if(value==null){
@@ -49,6 +65,29 @@ public class Dictionary {
         } else{
             printDef(value);
         }
+    }
+
+    public static void findByDef(){
+        print("Enter definition: ");
+        Scanner scanner = new Scanner(System.in);
+        String def = scanner.nextLine();
+
+        logs(def,"Definition");
+
+        for (String key : dict.keySet()) {
+            ArrayList<String> value = dict.get(key);
+            printSlangWithDef(value,def,key);
+        }
+    }
+
+    public static void logs(String searchStr, String type){
+        String saveStr = type+": "+searchStr;
+        logsList.add(saveStr);
+
+    }
+
+    public static void printLogs(String historyFile){
+
     }
 
     public static void menu() {
@@ -81,6 +120,8 @@ public class Dictionary {
                 prompt();
                 break;
             case 2:
+                findByDef();
+                prompt();
                 break;
             case 3:
 

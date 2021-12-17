@@ -18,7 +18,7 @@ public class MyReader {
     public static ArrayList<String> parseDef(String csvStr) {
         String[] res = null;
         if (csvStr != null) {
-            res = csvStr.split("`");
+            res = csvStr.split("\\| ");
         }
 
         ArrayList<String> a = new ArrayList<>();
