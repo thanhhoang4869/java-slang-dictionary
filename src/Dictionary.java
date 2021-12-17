@@ -10,7 +10,6 @@ public class Dictionary {
     private static final String FILENAME = "slang.txt";
     private static final String LOGS = "history.txt";
     static boolean working = false;
-    private static ArrayList<String> logsList = new ArrayList<>();
 
     public static void print(String s) {
         System.out.print(s);
@@ -89,8 +88,79 @@ public class Dictionary {
         }
     }
 
-    public static void printLogs(String historyFile){
+    public static void printLogs(){
+        println("Search history");
+        try {
+            ArrayList<String> logs = MyReader.readLogs(LOGS);
+            for(String log: logs){
+                println(log);
+            }
+        } catch (IOException e) {
+            e.getMessage();
+        }
+    }
 
+    public static boolean isDuplicate(String slang){
+        ArrayList<String> def = dict.get(slang);
+        if(def==null) return false;
+        return true;
+    }
+
+    public static void addSlangUtil(String slang){
+        ArrayList<String> defList = new ArrayList<String>();
+        print("How many definition?: ");
+        Scanner scanner = new Scanner(System.in);
+        int numDef = scanner.nextInt();
+
+        for(int i =0;i<numDef; i++){
+            print("Definition "+(i+1)+": ");
+            scanner = new Scanner(System.in);
+            String def = scanner.nextLine();
+            defList.add(def);
+        }
+
+        dict.put(slang,defList);
+        println("Added successfully!");
+    }
+
+    public static void addDefToSlang(String slang){
+        print("How many definition you want to add?: ");
+        Scanner scanner = new Scanner(System.in);
+        int numDef = scanner.nextInt();
+
+        for(int i =0;i<numDef; i++){
+            print("Definition: ");
+            scanner = new Scanner(System.in);
+            String def = scanner.nextLine();
+            dict.get(slang).add(def);
+        }
+        println("Added successfully!");
+    }
+
+    public static void addSlang(){
+        print("Enter new slang: ");
+        Scanner scanner = new Scanner(System.in);
+        String slang = scanner.nextLine();
+
+        if(isDuplicate(slang)){
+            println("Slang existed, do you want to: ");
+            println("1.Duplicate slang");
+            println("2.Overwrite slang");
+            print("Option: ");
+            scanner = new Scanner(System.in);
+            int option = scanner.nextInt();
+            while (option != 1 && option != 2) {
+                print("Enter valid option: ");
+                option = scanner.nextInt();
+            }
+            if(option==1){
+                addDefToSlang(slang);
+                return;
+            } else{
+                dict.remove(slang);
+            }
+        }
+        addSlangUtil(slang);
     }
 
     public static void menu() {
@@ -127,10 +197,12 @@ public class Dictionary {
                 prompt();
                 break;
             case 3:
-
+                printLogs();
+                prompt();
                 break;
             case 4:
-
+                addSlang();
+                prompt();
                 break;
             case 5:
 
@@ -151,4 +223,3 @@ public class Dictionary {
             menu();
     }
 }
-
