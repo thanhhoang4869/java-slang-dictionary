@@ -81,7 +81,7 @@ public class Dictionary {
     }
 
     public static void logs(String searchStr, String type){
-        String saveStr = type+": "+searchStr;
+        String saveStr = type+": "+searchStr+"\n";
         logsList.add(saveStr);
 
     }
