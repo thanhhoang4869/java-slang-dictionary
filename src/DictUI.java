@@ -72,7 +72,7 @@ class DictUI extends JFrame {
             String cmd = e.getActionCommand();
             switch (cmd){
                 case "slang":
-
+                    new SearchSlangUI();
                     break;
                 case "sort-id":
 

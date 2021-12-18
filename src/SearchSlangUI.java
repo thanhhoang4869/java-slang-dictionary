@@ -1,27 +1,26 @@
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableModel;
-import javax.swing.table.TableRowSorter;
 import java.awt.*;
-import java.sql.SQLException;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
-public class SearchUI extends JFrame{
-    private Dictionary dict = Dictionary.getObject();
+public class SearchSlangUI extends JFrame implements ActionListener {
     JScrollPane scrollPane;
     JPanel searchPane;
     JButton button;
+    JTextField textField;
+    DefaultListModel<String> model = new DefaultListModel<>();
+    JList defList = new JList( model );
 
     public static void main(String args[]){
-        new SearchUI();
+        SearchSlangUI ui = new SearchSlangUI();
     }
 
-    public SearchUI(){
-        dict.getDict();
+    public SearchSlangUI(){
+        Dictionary.getObject().getDict();
         setLayout(new BorderLayout());
         setTitle("Search by slang");
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         setPreferredSize(new Dimension(600, 350));
 
@@ -44,9 +43,10 @@ public class SearchUI extends JFrame{
     public JPanel SearchPane() {
         JPanel panel = new JPanel();
         JLabel label = new JLabel("Enter slang");
-        JTextField textField = new JTextField(20);
+        textField = new JTextField(20);
 
         button = new JButton("Search");
+        button.addActionListener(this);
 
         panel.setLayout(new FlowLayout(FlowLayout.LEFT, 0, 10));
 
@@ -62,11 +62,23 @@ public class SearchUI extends JFrame{
     }
 
     public JScrollPane ScrollPane(){
-        ArrayList<String> def = dict.findBySlang("<3");
-        System.out.println(def);
-        JList defList = new JList(def.toArray());
-
         JScrollPane s = new JScrollPane(defList);
         return s;
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        String slang = textField.getText();
+        ArrayList<String> def = Dictionary.getObject().findBySlang(slang);
+
+        if (def == null) {
+            JOptionPane.showMessageDialog(null, "No definition!");
+        } else {
+            model.clear();
+            for(String s: def){
+                model.addElement(s);
+            }
+        }
+
     }
 }
