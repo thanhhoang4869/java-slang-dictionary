@@ -5,16 +5,22 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
-import java.util.concurrent.TimeUnit;
 
-public class Dictionary extends JFrame {
+public class Dictionary {
     private static HashMap<String, ArrayList<String>> dict = new HashMap<>();
     private static final String FILENAME = "slang.txt";
     private static final String LOGS = "history.txt";
     static boolean working = false;
 
-    public Dictionary(){
+    private static Dictionary instance = null;
+    private Dictionary(){
+    };
 
+    public static Dictionary getObject() {
+        if (instance == null) {
+            instance = new Dictionary();
+        }
+        return instance;
     }
 
     public static void print(String s) {
@@ -56,7 +62,7 @@ public class Dictionary extends JFrame {
         keyIn.nextLine();
     }
 
-    public static void findBySlang(){
+    public void findBySlang(){
         print("Enter slang: ");
         Scanner scanner = new Scanner(System.in);
         String slang = scanner.nextLine();
@@ -72,7 +78,7 @@ public class Dictionary extends JFrame {
         }
     }
 
-    public static void findByDef(){
+    public void findByDef(){
         print("Enter definition: ");
         Scanner scanner = new Scanner(System.in);
         String def = scanner.nextLine();
@@ -85,7 +91,7 @@ public class Dictionary extends JFrame {
         }
     }
 
-    public static void logs(String searchStr, String type){
+    public void logs(String searchStr, String type){
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
         LocalDateTime now = LocalDateTime.now();
 
@@ -97,7 +103,7 @@ public class Dictionary extends JFrame {
         }
     }
 
-    public static void printLogs(){
+    public void printLogs(){
         println("Search history");
         try {
             ArrayList<String> logs = MyReader.readLogs(LOGS);
@@ -109,13 +115,13 @@ public class Dictionary extends JFrame {
         }
     }
 
-    public static boolean isDuplicate(String slang){
+    public boolean isDuplicate(String slang){
         ArrayList<String> def = dict.get(slang);
         if(def==null) return false;
         return true;
     }
 
-    public static void addSlangUtil(String slang){
+    public void addSlangUtil(String slang){
         ArrayList<String> defList = new ArrayList<String>();
         print("How many definition?: ");
         Scanner scanner = new Scanner(System.in);
@@ -132,7 +138,7 @@ public class Dictionary extends JFrame {
         println("Added successfully!");
     }
 
-    public static void addDefToSlang(String slang){
+    public void addDefToSlang(String slang){
         print("How many definition you want to add?: ");
         Scanner scanner = new Scanner(System.in);
         int numDef = scanner.nextInt();
@@ -146,7 +152,7 @@ public class Dictionary extends JFrame {
         println("Added successfully!");
     }
 
-    public static void addSlang(){
+    public void addSlang(){
         print("Enter new slang: ");
         Scanner scanner = new Scanner(System.in);
         String slang = scanner.nextLine();
@@ -172,7 +178,7 @@ public class Dictionary extends JFrame {
         addSlangUtil(slang);
     }
 
-    public static void menu() {
+    public void menu() {
         println("--------------------------------------");
         println("|  01. Find by slang word            |");
         println("|  02. Find by slang definition      |");
@@ -224,11 +230,11 @@ public class Dictionary extends JFrame {
         }
     }
 
-    public static void main(String args[]) {
-        working = true;
-        System.out.println("Loading data...");
-        getDict();
-        while(working)
-            menu();
-    }
+//    public static void main(String args[]) {
+//        working = true;
+//        System.out.println("Loading data...");
+//        getDict();
+//        while(working)
+//            menu();
+//    }
 }
