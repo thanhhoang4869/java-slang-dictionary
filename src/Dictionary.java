@@ -44,15 +44,15 @@ public class Dictionary {
         }
     }
 
-    public static void printSlangWithDef(ArrayList<String> list,String def,String key){
+    public ArrayList<String> findSlangWithDef(ArrayList<String> list,String def,String key){
+        ArrayList<String> slang = new ArrayList<String>();
         for(String i: list){
             if(i.toLowerCase().contains(def.toLowerCase())){
-                println(key);
-                printDef(dict.get(key));
-                println("===============");
+                slang.add(key);
                 break;
             }
         }
+        return slang;
     }
 
     public static void prompt(){
@@ -68,17 +68,14 @@ public class Dictionary {
         return value;
     }
 
-    public void findByDef(){
-        print("Enter definition: ");
-        Scanner scanner = new Scanner(System.in);
-        String def = scanner.nextLine();
-
+    public ArrayList<String> findByDef(String def){
         logs(def,"Definition");
-
+        ArrayList<String> slang = new ArrayList<String>();
         for (String key : dict.keySet()) {
             ArrayList<String> value = dict.get(key);
-            printSlangWithDef(value,def,key);
+            slang.addAll(findSlangWithDef(value,def,key));
         }
+        return slang;
     }
 
     public void logs(String searchStr, String type){
