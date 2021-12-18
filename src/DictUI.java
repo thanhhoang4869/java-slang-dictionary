@@ -1,9 +1,12 @@
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 class DictUI extends JFrame {
     private Dictionary dict = Dictionary.getObject();
+    private ButtonClickListener buttonClickListener = new ButtonClickListener();
     JPanel buttonVertical;
     JPanel mainPane;
 
@@ -63,6 +66,39 @@ class DictUI extends JFrame {
         return panel;
     }
 
+    private class ButtonClickListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            String cmd = e.getActionCommand();
+            switch (cmd){
+                case "slang":
+
+                    break;
+                case "sort-id":
+
+                    break;
+                case "Add":
+
+                    break;
+                case "Update":
+
+                    break;
+                case "Delete":
+
+                    break;
+                case "Export":
+
+                    break;
+                case "Import":
+
+                    break;
+                case "Config":
+
+                    break;
+            }
+        }
+    }
+
     public JPanel ButtonVertical1() {
         JPanel panel = new JPanel();
         panel.setLayout(new GridLayout(5, 1, 0, 5));
@@ -74,13 +110,23 @@ class DictUI extends JFrame {
         JButton editButton = new JButton("Edit slang");
         JButton delButton = new JButton("Delete slang");
 
-
         panel.add(slangButton);
         panel.add(defButton);
-
         panel.add(addButton);
         panel.add(editButton);
         panel.add(delButton);
+
+        slangButton.setActionCommand("slang");
+        defButton.setActionCommand("def");
+        addButton.setActionCommand("add");
+        editButton.setActionCommand("edit");
+        delButton.setActionCommand("del");
+
+        slangButton.addActionListener(buttonClickListener);
+        defButton.addActionListener(buttonClickListener);
+        addButton.addActionListener(buttonClickListener);
+        editButton.addActionListener(buttonClickListener);
+        delButton.addActionListener(buttonClickListener);
 
         return panel;
     }
@@ -97,22 +143,22 @@ class DictUI extends JFrame {
 
         panel.add(todayButton);
         panel.add(gameButton);
-
         panel.add(hisButton);
         panel.add(resetButton);
         panel.add(exitButton);
 
-//        addButton.setActionCommand("Add");
-//        editButton.setActionCommand("Edit");
-//        deleteButton.setActionCommand("Delete");
-//
-//        addButton.addActionListener(buttonClickListener);
-//        editButton.addActionListener(buttonClickListener);
-//        deleteButton.addActionListener(buttonClickListener);
-//
-//        importButton.addActionListener(buttonClickListener);
-//        exportButton.addActionListener(buttonClickListener);
-//        configButton.addActionListener(buttonClickListener);
+        todayButton.setActionCommand("today");
+        gameButton.setActionCommand("game");
+        hisButton.setActionCommand("history");
+        resetButton.setActionCommand("reset");
+        exitButton.setActionCommand("exit");
+
+        todayButton.addActionListener(buttonClickListener);
+        gameButton.addActionListener(buttonClickListener);
+        hisButton.addActionListener(buttonClickListener);
+        resetButton.addActionListener(buttonClickListener);
+        exitButton.addActionListener(buttonClickListener);
+
         return panel;
     }
 }
