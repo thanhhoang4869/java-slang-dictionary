@@ -1,15 +1,21 @@
+import javax.swing.*;
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 
-public class Dictionary {
+public class Dictionary extends JFrame {
     private static HashMap<String, ArrayList<String>> dict = new HashMap<>();
     private static final String FILENAME = "slang.txt";
     private static final String LOGS = "history.txt";
     static boolean working = false;
+
+    public Dictionary(){
+
+    }
 
     public static void print(String s) {
         System.out.print(s);
@@ -80,7 +86,10 @@ public class Dictionary {
     }
 
     public static void logs(String searchStr, String type){
-        String saveStr = type+": "+searchStr+"\n";
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
+        LocalDateTime now = LocalDateTime.now();
+
+        String saveStr = dtf.format(now)+" "+type+": "+searchStr+"\n";
         try {
             MyWriter.appendLogs(LOGS,saveStr);
         } catch (IOException e) {
