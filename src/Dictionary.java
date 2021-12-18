@@ -91,16 +91,14 @@ public class Dictionary {
         }
     }
 
-    public void printLogs(){
-        println("Search history");
+    public ArrayList<String> vwLogs(){
+        ArrayList<String> logs = new ArrayList<>();
         try {
-            ArrayList<String> logs = MyReader.readLogs(LOGS);
-            for(String log: logs){
-                println(log);
-            }
+            logs = MyReader.readLogs(LOGS);
         } catch (IOException e) {
-            e.getMessage();
+            JOptionPane.showMessageDialog(null, e.getMessage());
         }
+        return logs;
     }
 
     public boolean isDuplicate(String slang){
@@ -131,12 +129,4 @@ public class Dictionary {
         dict.get(slang).add(def);
         JOptionPane.showMessageDialog(null, "Definition added successfully!");
     }
-
-//    public static void main(String args[]) {
-//        working = true;
-//        System.out.println("Loading data...");
-//        getDict();
-//        while(working)
-//            menu();
-//    }
 }

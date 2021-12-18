@@ -80,19 +80,25 @@ class DictUI extends JFrame {
                 case "add":
                     new AddUI();
                     break;
-                case "Update":
+                case "history":
+                    new LogUI();
+                    break;
+                case "delete":
 
                     break;
-                case "Delete":
+                case "edit":
 
                     break;
-                case "Export":
+                case "today":
 
                     break;
-                case "Import":
+                case "game":
 
                     break;
-                case "Config":
+                case "reset":
+
+                    break;
+                case "exit":
 
                     break;
             }
