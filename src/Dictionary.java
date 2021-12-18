@@ -1,4 +1,3 @@
-import javax.swing.*;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -62,20 +61,11 @@ public class Dictionary {
         keyIn.nextLine();
     }
 
-    public void findBySlang(){
-        print("Enter slang: ");
-        Scanner scanner = new Scanner(System.in);
-        String slang = scanner.nextLine();
-
+    public ArrayList<String> findBySlang(String slang){
         logs(slang,"Slang");
 
         ArrayList<String> value = dict.get(slang);
-
-        if(value==null){
-            println("No definition found");
-        } else{
-            printDef(value);
-        }
+        return value;
     }
 
     public void findByDef(){
@@ -176,58 +166,6 @@ public class Dictionary {
             }
         }
         addSlangUtil(slang);
-    }
-
-    public void menu() {
-        println("--------------------------------------");
-        println("|  01. Find by slang word            |");
-        println("|  02. Find by slang definition      |");
-        println("|  03. Search history                |");
-        println("|  04. Add new slang word            |");
-        println("|  05. Edit slang word               |");
-        println("|  06. Delete slang word             |");
-        println("|  07. Today's slang word            |");
-        println("|  08. Reset dictionary              |");
-        println("|  09. Definition-guess Game         |");
-        println("|  10. Slang-word-guess Game         |");
-        println("|  11. Exit                          |");
-        println("--------------------------------------");
-
-        print("Option: ");
-        Scanner scanner = new Scanner(System.in);
-        int option = scanner.nextInt();
-
-        while (option < 1 || option > 10) {
-            print("Enter valid number: ");
-            option = scanner.nextInt();
-        }
-
-        switch (option) {
-            case 1:
-                findBySlang();
-                prompt();
-                break;
-            case 2:
-                findByDef();
-                prompt();
-                break;
-            case 3:
-                printLogs();
-                prompt();
-                break;
-            case 4:
-                addSlang();
-                prompt();
-                break;
-            case 5:
-
-                break;
-            case 6:
-
-                break;
-            case 7:
-                working = false;
-        }
     }
 
 //    public static void main(String args[]) {
