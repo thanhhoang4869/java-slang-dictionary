@@ -74,11 +74,11 @@ class DictUI extends JFrame {
                 case "slang":
                     new SearchSlangUI();
                     break;
-                case "sort-id":
-
+                case "def":
+                    new SearchDefUI();
                     break;
-                case "Add":
-
+                case "add":
+                    new AddUI();
                     break;
                 case "Update":
 

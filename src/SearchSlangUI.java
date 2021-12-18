@@ -18,7 +18,6 @@ public class SearchSlangUI extends JFrame implements ActionListener {
     }
 
     public SearchSlangUI(){
-        Dictionary.getObject().getDict();
         setLayout(new BorderLayout());
         setTitle("Search by slang");
 

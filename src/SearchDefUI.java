@@ -1,8 +1,7 @@
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.*;
 import java.util.ArrayList;
 
 public class SearchDefUI extends JFrame implements ActionListener {
@@ -18,7 +17,6 @@ public class SearchDefUI extends JFrame implements ActionListener {
     }
 
     public SearchDefUI(){
-        Dictionary.getObject().getDict();
         setLayout(new BorderLayout());
         setTitle("Search by definition");
 
@@ -26,6 +24,8 @@ public class SearchDefUI extends JFrame implements ActionListener {
 
         searchPane = SearchPane();
         scrollPane = ScrollPane();
+
+        slangList.addMouseListener(mouseListener);
 
         JPanel panel= new JPanel();
         panel.setLayout(new BorderLayout());
@@ -70,15 +70,29 @@ public class SearchDefUI extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         String def = textField.getText();
         ArrayList<String> slangList = Dictionary.getObject().findByDef(def);
+        System.out.print(slangList);
 
-        if (def == null) {
-            JOptionPane.showMessageDialog(null, "No definition!");
+        if (slangList.size()<1) {
+            JOptionPane.showMessageDialog(null, "No slang found!");
         } else {
             model.clear();
             for(String s: slangList){
                 model.addElement(s);
             }
         }
-
     }
+
+    MouseListener mouseListener = new MouseAdapter() {
+        public void mouseClicked(MouseEvent e) {
+            if (e.getClickCount() == 2) {
+                String slang = (String) slangList.getSelectedValue();
+                ArrayList<String> defList = Dictionary.getObject().findBySlang(slang);
+                String defStr="";
+                for(String s: defList){
+                    defStr+=s+"\n";
+                }
+                JOptionPane.showMessageDialog(null,defStr,"Definitions", JOptionPane.PLAIN_MESSAGE);
+            }
+        }
+    };
 }

@@ -1,3 +1,4 @@
+import javax.swing.*;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -6,7 +7,7 @@ import java.util.HashMap;
 import java.util.Scanner;
 
 public class Dictionary {
-    private static HashMap<String, ArrayList<String>> dict = new HashMap<>();
+    private HashMap<String, ArrayList<String>> dict = new HashMap<>();
     private static final String FILENAME = "slang.txt";
     private static final String LOGS = "history.txt";
     static boolean working = false;
@@ -30,7 +31,7 @@ public class Dictionary {
         System.out.println(s);
     }
 
-    public static void getDict(){
+    public void getDict(){
         try {
             dict = MyReader.getDict(FILENAME);
         } catch (IOException e) {
@@ -108,61 +109,27 @@ public class Dictionary {
         return true;
     }
 
-    public void addSlangUtil(String slang){
-        ArrayList<String> defList = new ArrayList<String>();
-        print("How many definition?: ");
-        Scanner scanner = new Scanner(System.in);
-        int numDef = scanner.nextInt();
-
-        for(int i =0;i<numDef; i++){
-            print("Definition "+(i+1)+": ");
-            scanner = new Scanner(System.in);
-            String def = scanner.nextLine();
-            defList.add(def);
-        }
+    public void overwrite(String slang, String def){
+        dict.remove(slang);
+        ArrayList<String> defList = new ArrayList<>();
+        defList.add(def);
+        System.out.print(defList);
 
         dict.put(slang,defList);
-        println("Added successfully!");
+        JOptionPane.showMessageDialog(null, "Overwrite successfully!");
     }
 
-    public void addDefToSlang(String slang){
-        print("How many definition you want to add?: ");
-        Scanner scanner = new Scanner(System.in);
-        int numDef = scanner.nextInt();
+    public void addSlang(String slang, String def){
+        ArrayList<String> defList = new ArrayList<>();
+        defList.add(def);
 
-        for(int i =0;i<numDef; i++){
-            print("Definition: ");
-            scanner = new Scanner(System.in);
-            String def = scanner.nextLine();
-            dict.get(slang).add(def);
-        }
-        println("Added successfully!");
+        dict.put(slang,defList);
+        JOptionPane.showMessageDialog(null, "Added successfully!");
     }
 
-    public void addSlang(){
-        print("Enter new slang: ");
-        Scanner scanner = new Scanner(System.in);
-        String slang = scanner.nextLine();
-
-        if(isDuplicate(slang)){
-            println("Slang existed, do you want to: ");
-            println("1.Duplicate slang");
-            println("2.Overwrite slang");
-            print("Option: ");
-            scanner = new Scanner(System.in);
-            int option = scanner.nextInt();
-            while (option != 1 && option != 2) {
-                print("Enter valid option: ");
-                option = scanner.nextInt();
-            }
-            if(option==1){
-                addDefToSlang(slang);
-                return;
-            } else{
-                dict.remove(slang);
-            }
-        }
-        addSlangUtil(slang);
+    public void addDefToSlang(String slang, String def){
+        dict.get(slang).add(def);
+        JOptionPane.showMessageDialog(null, "Definition added successfully!");
     }
 
 //    public static void main(String args[]) {
