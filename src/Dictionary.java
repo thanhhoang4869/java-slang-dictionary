@@ -4,13 +4,13 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Scanner;
+import java.util.Random;
 
 public class Dictionary {
     private HashMap<String, ArrayList<String>> dict = new HashMap<>();
-    private static final String FILENAME = "slang.txt";
+    private static final String ORIGIN = "slang.txt";
+    private static final String MYDICT = "my_slang.txt";
     private static final String LOGS = "history.txt";
-    static boolean working = false;
 
     private static Dictionary instance = null;
     private Dictionary(){
@@ -23,26 +23,16 @@ public class Dictionary {
         return instance;
     }
 
-    public static void print(String s) {
-        System.out.print(s);
-    }
-
-    public static void println(String s) {
-        System.out.println(s);
-    }
-
     public void getDict(){
         try {
-            dict = MyReader.getDict(FILENAME);
+            dict = MyReader.getDict(ORIGIN);
         } catch (IOException e) {
             e.getMessage();
         }
     }
 
-    public static void printDef(ArrayList<String> def){
-        for(int i=0;i<def.size(); i++){
-            println("Definition "+(i+1)+": "+ def.get(i));
-        }
+    public ArrayList<String> getDef(String slang){
+        return dict.get(slang);
     }
 
     public ArrayList<String> findSlangWithDef(ArrayList<String> list,String def,String key){
@@ -54,12 +44,6 @@ public class Dictionary {
             }
         }
         return slang;
-    }
-
-    public static void prompt(){
-        print("Press ENTER to continue");
-        Scanner keyIn = new Scanner(System.in);
-        keyIn.nextLine();
     }
 
     public ArrayList<String> findBySlang(String slang){
@@ -89,6 +73,27 @@ public class Dictionary {
         } catch (IOException e) {
             e.getMessage();
         }
+    }
+
+    public void delete(String slang){
+        dict.remove(slang);
+    }
+
+    public String random(){
+        int randomIndex = new Random().nextInt(dict.size());
+        ArrayList<String> slangList=new ArrayList<>();
+
+        for(String i: dict.keySet()){
+            slangList.add(i);
+        }
+
+        return slangList.get(randomIndex);
+    }
+
+    public void edit(String slang,String def){
+        ArrayList<String> defList = new ArrayList<>();
+        defList.add(def);
+        dict.put(slang,defList);
     }
 
     public ArrayList<String> vwLogs(){

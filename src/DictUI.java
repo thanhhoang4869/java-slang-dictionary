@@ -3,6 +3,8 @@ import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 class DictUI extends JFrame {
     private Dictionary dict = Dictionary.getObject();
@@ -29,6 +31,12 @@ class DictUI extends JFrame {
         pack();
         setLocationRelativeTo(null);
         setVisible(true);
+
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent e) {
+                System.exit(0);
+            }
+        });
     }
 
     public JPanel MainPane(){
@@ -83,26 +91,70 @@ class DictUI extends JFrame {
                 case "history":
                     new LogUI();
                     break;
-                case "delete":
-
+                case "del":
+                    new DelUI();
                     break;
                 case "edit":
-
+                    new EditUI();
                     break;
                 case "today":
-
+                    TodaySlang();
                     break;
                 case "game":
 
                     break;
                 case "reset":
-
+                    Dictionary.getObject().getDict();
                     break;
                 case "exit":
 
                     break;
             }
         }
+    }
+
+    public JFrame TodaySlang(){
+        String todaySlang = Dictionary.getObject().random();
+        ArrayList<String> defList = Dictionary.getObject().getDef(todaySlang);
+
+        StringBuilder def = new StringBuilder();
+
+        JLabel title = new JLabel("Today slang is");
+        JLabel labelSlang = new JLabel(todaySlang);
+        labelSlang.setForeground(Color.blue);
+        labelSlang.setFont(new Font("Verdana", Font.PLAIN, 20));
+        labelSlang.setPreferredSize(new Dimension(250, 30));
+
+        def.append("Definition(s): ");
+        for(int i=0;i<defList.size()-1;i++){
+            def.append(defList.get(i));
+            def.append(" / ");
+        }
+        def.append(defList.get(defList.size() - 1));
+
+        JLabel labelDef = new JLabel(String.valueOf(def));
+
+        JFrame frame =new JFrame();
+        JPanel panel = new JPanel();
+        BoxLayout boxlayout = new BoxLayout(panel, BoxLayout.Y_AXIS);
+        panel.setLayout(boxlayout);
+
+        frame.setTitle("Today's slang");
+        frame.setPreferredSize(new Dimension(400, 200));
+
+        panel.add(title);
+        panel.add(labelSlang);
+        panel.add(labelDef);
+
+        panel.setBorder(new EmptyBorder(10,10,10,10));
+
+        frame.add(panel);
+
+        frame.pack();
+        frame.setLocationRelativeTo(null);
+        frame.setVisible(true);
+
+        return frame;
     }
 
     public JPanel ButtonVertical1() {
