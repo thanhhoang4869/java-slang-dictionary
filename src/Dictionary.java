@@ -137,7 +137,6 @@ public class Dictionary {
         dict.remove(slang);
         ArrayList<String> defList = new ArrayList<>();
         defList.add(def);
-        System.out.print(defList);
 
         dict.put(slang,defList);
         JOptionPane.showMessageDialog(null, "Overwrite successfully!");

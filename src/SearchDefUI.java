@@ -70,7 +70,6 @@ public class SearchDefUI extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         String def = textField.getText();
         ArrayList<String> slangList = Dictionary.getObject().findByDef(def);
-        System.out.print(slangList);
 
         if (slangList.size()<1) {
             JOptionPane.showMessageDialog(null, "No slang found!");
