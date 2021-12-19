@@ -6,11 +6,15 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import static java.lang.System.exit;
+
 class DictUI extends JFrame {
     private Dictionary dict = Dictionary.getObject();
     private ButtonClickListener buttonClickListener = new ButtonClickListener();
     JPanel buttonVertical;
     JPanel mainPane;
+    JButton yes = new JButton("Yes");
+    JButton no = new JButton("Cancel");
 
     public static void main(String args[]){
         new DictUI();
@@ -34,7 +38,7 @@ class DictUI extends JFrame {
 
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent e) {
-                System.exit(0);
+                exit(0);
             }
         });
     }
@@ -100,14 +104,14 @@ class DictUI extends JFrame {
                 case "today":
                     TodaySlang();
                     break;
-                case "game":
+                case "gameSlang":
+
+                    break;
+                case "gameDef":
 
                     break;
                 case "reset":
-                    Dictionary.getObject().getDict();
-                    break;
-                case "exit":
-
+                    new ConfirmResetUI();
                     break;
             }
         }
@@ -194,28 +198,28 @@ class DictUI extends JFrame {
         panel.setLayout(new GridLayout(5, 1, 0, 5));
 
         JButton todayButton = new JButton("Today's slang");
-        JButton gameButton = new JButton("Game");
+        JButton gameDefButton = new JButton("Definition quiz");
         JButton hisButton = new JButton("History");
         JButton resetButton = new JButton("Reset");
-        JButton exitButton = new JButton("Exit");
+        JButton gameSlangButton = new JButton("Slang quiz");
 
         panel.add(todayButton);
-        panel.add(gameButton);
+        panel.add(gameSlangButton);
+        panel.add(gameDefButton);
         panel.add(hisButton);
         panel.add(resetButton);
-        panel.add(exitButton);
 
         todayButton.setActionCommand("today");
-        gameButton.setActionCommand("game");
+        gameDefButton.setActionCommand("gameDef");
         hisButton.setActionCommand("history");
         resetButton.setActionCommand("reset");
-        exitButton.setActionCommand("exit");
+        gameSlangButton.setActionCommand("gameSlang");
 
         todayButton.addActionListener(buttonClickListener);
-        gameButton.addActionListener(buttonClickListener);
+        gameDefButton.addActionListener(buttonClickListener);
         hisButton.addActionListener(buttonClickListener);
         resetButton.addActionListener(buttonClickListener);
-        exitButton.addActionListener(buttonClickListener);
+        gameSlangButton.addActionListener(buttonClickListener);
 
         return panel;
     }

@@ -40,6 +40,16 @@ public class MyReader {
         return dict;
     }
 
+    public static ArrayList<String> getFromOrigin(String fname) throws IOException {
+        ArrayList<String> str = new ArrayList<>();
+        String line;
+        BufferedReader reader = new BufferedReader(new FileReader(fname));
+        while ((line = reader.readLine()) != null) {
+            str.add(line+"\n");
+        }
+        return str;
+    }
+
     public static ArrayList<String> readLogs(String fname) throws IOException {
         ArrayList<String> logs = new ArrayList<>();
         String line;

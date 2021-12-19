@@ -25,7 +25,16 @@ public class Dictionary {
 
     public void getDict(){
         try {
-            dict = MyReader.getDict(ORIGIN);
+            dict = MyReader.getDict(MYDICT);
+        } catch (IOException e) {
+            e.getMessage();
+        }
+    }
+
+    public void getOrigin(){
+        try {
+            MyWriter.createFileFromOrigin(ORIGIN,MYDICT);
+            dict = MyReader.getDict(MYDICT);
         } catch (IOException e) {
             e.getMessage();
         }
@@ -77,6 +86,12 @@ public class Dictionary {
 
     public void delete(String slang){
         dict.remove(slang);
+
+        try {
+            MyWriter.saveDict(dict,MYDICT);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public String random(){
@@ -94,6 +109,12 @@ public class Dictionary {
         ArrayList<String> defList = new ArrayList<>();
         defList.add(def);
         dict.put(slang,defList);
+
+        try {
+            MyWriter.saveDict(dict,MYDICT);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public ArrayList<String> vwLogs(){
@@ -120,6 +141,12 @@ public class Dictionary {
 
         dict.put(slang,defList);
         JOptionPane.showMessageDialog(null, "Overwrite successfully!");
+
+        try {
+            MyWriter.saveDict(dict,MYDICT);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void addSlang(String slang, String def){
@@ -128,10 +155,22 @@ public class Dictionary {
 
         dict.put(slang,defList);
         JOptionPane.showMessageDialog(null, "Added successfully!");
+
+        try {
+            MyWriter.saveDict(dict,MYDICT);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void addDefToSlang(String slang, String def){
         dict.get(slang).add(def);
         JOptionPane.showMessageDialog(null, "Definition added successfully!");
+
+        try {
+            MyWriter.saveDict(dict,MYDICT);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
