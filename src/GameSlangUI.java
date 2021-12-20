@@ -16,18 +16,19 @@ public class GameSlangUI {
     String todaySlang;
     String correct;
     JFrame frame;
+    static int point = 0;
 
-    public GameSlangUI(){
+    public GameSlangUI() {
         todaySlang = Dictionary.getObject().random();
         ArrayList<String> defList = Dictionary.getObject().getDef(todaySlang);
         correct = defList.get(0);
 
         Dictionary.getObject().remove(todaySlang);
         option = Dictionary.getObject().genDef();
-        Dictionary.getObject().put(todaySlang,defList);
+        Dictionary.getObject().put(todaySlang, defList);
 
-        int randomIndex = new Random().nextInt(3);
-        option.add(randomIndex,correct);
+        int randomIndex = new Random().nextInt(4);
+        option.add(randomIndex, correct);
 
         frame = new JFrame();
         JPanel panel = new JPanel();
@@ -40,7 +41,7 @@ public class GameSlangUI {
         JPanel button = ButtonVertical();
         panel.add(button);
 
-        panel.setBorder(new EmptyBorder(10,10,10,10));
+        panel.setBorder(new EmptyBorder(10, 10, 10, 10));
 
         frame.add(panel);
 
@@ -51,7 +52,7 @@ public class GameSlangUI {
 
     public JPanel ButtonVertical() {
         JPanel panel = new JPanel();
-        panel.setLayout(new GridLayout(5, 1, 0, 8));
+        panel.setLayout(new GridLayout(6, 1, 0, 8));
 
         JLabel labelSlang = new JLabel(todaySlang);
         labelSlang.setForeground(Color.blue);
@@ -64,6 +65,10 @@ public class GameSlangUI {
         button4.setText(option.get(3));
 
         panel.add(labelSlang);
+
+        JLabel pointLabel = new JLabel("Point: "+point);
+
+        panel.add(pointLabel);
         panel.add(button1);
         panel.add(button2);
         panel.add(button3);
@@ -88,37 +93,41 @@ public class GameSlangUI {
         @Override
         public void actionPerformed(ActionEvent e) {
             String cmd = e.getActionCommand();
-            switch (cmd){
+            switch (cmd) {
                 case "1":
-                    if(button1.getText().equals(correct)){
+                    if (button1.getText().equals(correct)) {
                         frame.dispose();
+                        point+=5;
                         new GameSlangUI();
-                    } else{
-                        JOptionPane.showMessageDialog(null,"Try again!");
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Try again!");
                     }
                     break;
                 case "2":
-                    if(button2.getText().equals(correct)){
+                    if (button2.getText().equals(correct)) {
                         frame.dispose();
+                        point+=5;
                         new GameSlangUI();
-                    } else{
-                        JOptionPane.showMessageDialog(null,"Try again!");
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Try again!");
                     }
                     break;
                 case "3":
-                    if(button3.getText().equals(correct)){
+                    if (button3.getText().equals(correct)) {
                         frame.dispose();
+                        point+=5;
                         new GameSlangUI();
-                    } else{
-                        JOptionPane.showMessageDialog(null,"Try again!");
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Try again!");
                     }
                     break;
                 case "4":
-                    if(button4.getText().equals(correct)){
+                    if (button4.getText().equals(correct)) {
                         frame.dispose();
+                        point+=5;
                         new GameSlangUI();
-                    } else{
-                        JOptionPane.showMessageDialog(null,"Try again!");
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Try again!");
                     }
                     break;
             }
