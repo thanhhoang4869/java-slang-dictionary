@@ -70,6 +70,17 @@ public class Dictionary {
         return slang;
     }
 
+    public String findByExactDef(String def){
+        ArrayList<String> slang = new ArrayList<String>();
+        for (String key : dict.keySet()) {
+            ArrayList<String> value = dict.get(key);
+            if(value.contains(def)){
+                return key;
+            }
+        }
+        return null;
+    }
+
     public void logs(String searchStr, String type){
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
         LocalDateTime now = LocalDateTime.now();
@@ -101,6 +112,21 @@ public class Dictionary {
         }
 
         return slangList.get(randomIndex);
+    }
+
+    public ArrayList<String> randomSlangForDefGame(){
+        ArrayList<String> slangList=new ArrayList<>();
+        ArrayList<String> res=new ArrayList<>(3);
+
+        for(String i: dict.keySet()){
+            slangList.add(i);
+        }
+
+        for(int i=0;i<3;i++){
+            int randomIndex = new Random().nextInt(slangList.size());
+            res.add(slangList.get(randomIndex));
+        }
+        return res;
     }
 
     public void edit(String slang,String def){
@@ -189,6 +215,20 @@ public class Dictionary {
         }
 
         return res;
+    }
+
+    public String genDefNoFixed(){
+        ArrayList<String> res = new ArrayList<>();
+
+        for(String slang : dict.keySet()){
+            ArrayList<String> defList = dict.get(slang);
+            for(String def : defList){
+                res.add(def);
+            }
+        }
+
+        int randomIndex = new Random().nextInt(res.size());
+        return res.get(randomIndex);
     }
 
     public void remove(String slang){

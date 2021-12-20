@@ -13,19 +13,21 @@ public class GameDefUI {
     JButton button4 = new JButton();
     private ButtonClickListener buttonClickListener = new ButtonClickListener();
     ArrayList<String> option;
-    String todaySlang;
+    String randomDef;
     String correct;
     JFrame frame;
     static int point = 0;
 
     public GameDefUI() {
-        todaySlang = Dictionary.getObject().random();
-        ArrayList<String> defList = Dictionary.getObject().getDef(todaySlang);
-        correct = defList.get(0);
+        randomDef = Dictionary.getObject().genDefNoFixed();
+        correct = Dictionary.getObject().findByExactDef(randomDef);
+        ArrayList<String> defList = Dictionary.getObject().getDef(correct);
 
-        Dictionary.getObject().remove(todaySlang);
-        option = Dictionary.getObject().genDef();
-        Dictionary.getObject().put(todaySlang, defList);
+        Dictionary.getObject().remove(correct);
+
+        option = Dictionary.getObject().randomSlangForDefGame();
+
+        Dictionary.getObject().put(correct, defList);
 
         int randomIndex = new Random().nextInt(4);
         option.add(randomIndex, correct);
@@ -54,9 +56,9 @@ public class GameDefUI {
         JPanel panel = new JPanel();
         panel.setLayout(new GridLayout(6, 1, 0, 8));
 
-        JLabel labelSlang = new JLabel(todaySlang);
+        JLabel labelSlang = new JLabel(randomDef);
         labelSlang.setForeground(Color.blue);
-        labelSlang.setFont(new Font("Verdana", Font.PLAIN, 30));
+        labelSlang.setFont(new Font("Verdana", Font.PLAIN, 15));
         labelSlang.setPreferredSize(new Dimension(250, 30));
 
         button1.setText(option.get(0));

@@ -107,7 +107,7 @@ class DictUI extends JFrame {
                     new GameSlangUI();
                     break;
                 case "gameDef":
-
+                    new GameDefUI();
                     break;
                 case "reset":
                     new ConfirmResetUI();
