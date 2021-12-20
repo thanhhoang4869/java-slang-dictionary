@@ -2,9 +2,7 @@ import javax.swing.*;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Random;
+import java.util.*;
 
 public class Dictionary {
     private HashMap<String, ArrayList<String>> dict = new HashMap<>();
@@ -171,5 +169,33 @@ public class Dictionary {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public ArrayList<String> genDef(){
+        ArrayList<String> res = new ArrayList<>(3);
+
+        for(int i=0;i<3;i++){
+            String slang = random();
+            ArrayList<String> def = dict.get(slang);
+            for(String j:def){
+                res.add(j);
+            }
+        }
+
+        if(res.size()>3){
+            for(int i = 3;i<res.size();i++){
+                res.remove(i);
+            }
+        }
+
+        return res;
+    }
+
+    public void remove(String slang){
+        dict.remove(slang);
+    }
+
+    public void put(String slang,ArrayList<String> def){
+        dict.put(slang,def);
     }
 }

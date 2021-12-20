@@ -4,7 +4,6 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import java.util.HashMap;
 
 import static java.lang.System.exit;
 
@@ -105,7 +104,7 @@ class DictUI extends JFrame {
                     TodaySlang();
                     break;
                 case "gameSlang":
-
+                    new GameSlangUI();
                     break;
                 case "gameDef":
 
