@@ -1,1 +1,28 @@
-# Dict_19127067
+# Slang Dictionary
+This is the project of the course Java Application Development in HCMUS. In this project, I build a slang dictionary using Java.
+
+- See source codes in directory `Source`.
+
+## Data structure
+- HashMap<String,ArrayList<String>>: store a whole dictionary
+- String: to store slang word
+- ArrayList<String>: to store definitions of a slang word.
+
+### Libraries
+
+- JavaSwing, Java Util, Java AWT, Java IO, Java Time
+
+## Features
+- Search for definition by slang
+- Search for slang by definition
+- Add a new slang
+- Edit a slang
+- Delete a slang
+- Suggest today's slang
+- Slang quiz
+- Definition quiz
+- Reset dicionary
+
+## Authors
+- [Hoàng Như Thanh - Student ID: 19127067](https://github.com/thanhhoang4869)
+
