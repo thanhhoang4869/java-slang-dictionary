@@ -1,5 +1,5 @@
 # Slang Dictionary
-This is a project of the course Java Application Development in [FIT - HCMUS](https://www.hcmus.edu.vn/). In this project, I build a slang dictionary using Java.
+This is a project of the course Java Application Development in [FIT - HCMUS](https://www.facebook.com/fit.hcmus). In this project, I build a slang dictionary using Java.
 
 - See source codes in directory `Source`.
 
