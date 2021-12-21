@@ -15,6 +15,7 @@ This is a project of the course Java Application Development in [FIT - HCMUS](ht
 ### Features
 - Search for definition by slang
 - Search for slang by definition
+- View searching history
 - Add a new slang
 - Edit a slang
 - Delete a slang
