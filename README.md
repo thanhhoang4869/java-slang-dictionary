@@ -1,9 +1,9 @@
 # Slang Dictionary
-This is the project of the course Java Application Development in HCMUS. In this project, I build a slang dictionary using Java.
+This is a project of the course Java Application Development in [FIT - HCMUS](https://www.hcmus.edu.vn/). In this project, I build a slang dictionary using Java.
 
 - See source codes in directory `Source`.
 
-## Data structure
+### Data structure
 - HashMap<String,ArrayList<String>>: store a whole dictionary
 - String: to store slang word
 - ArrayList<String>: to store definitions of a slang word.
@@ -12,7 +12,7 @@ This is the project of the course Java Application Development in HCMUS. In this
 
 - JavaSwing, Java Util, Java AWT, Java IO, Java Time
 
-## Features
+### Features
 - Search for definition by slang
 - Search for slang by definition
 - Add a new slang
@@ -23,6 +23,6 @@ This is the project of the course Java Application Development in HCMUS. In this
 - Definition quiz
 - Reset dicionary
 
-## Authors
+### Authors
 - [Hoàng Như Thanh - Student ID: 19127067](https://github.com/thanhhoang4869)
 
