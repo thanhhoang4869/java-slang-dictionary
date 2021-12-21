@@ -24,6 +24,6 @@ This is a project of the course Java Application Development in [FIT - HCMUS](ht
 - Definition quiz
 - Reset dicionary
 
-### Authors
+### Author
 - [Hoàng Như Thanh - Student ID: 19127067](https://github.com/thanhhoang4869)
 
