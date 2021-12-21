@@ -10,7 +10,7 @@ This is a project of the course Java Application Development in [FIT - HCMUS](ht
 
 ### Libraries
 
-- JavaSwing, Java Util, Java AWT, Java IO, Java Time
+- Java Swing, Java Util, Java AWT, Java IO, Java Time
 
 ### Features
 - Search for definition by slang
