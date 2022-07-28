@@ -4,7 +4,7 @@ This is a project of the course Java Application Development in [FIT - HCMUS](ht
 - See source codes in directory `Source`.
 
 ### Data structure
-- HashMap: store a whole dictionary
+- HashMap: to store a whole dictionary
 - String: to store slang word
 - ArrayList<String>: to store definitions of a slang word.
 
@@ -22,7 +22,7 @@ This is a project of the course Java Application Development in [FIT - HCMUS](ht
 - Suggest today's slang
 - Slang quiz
 - Definition quiz
-- Reset dicionary
+- Reset dictionary
 
 ### Author
 - [Hoàng Như Thanh - Student ID: 19127067](https://github.com/thanhhoang4869)
